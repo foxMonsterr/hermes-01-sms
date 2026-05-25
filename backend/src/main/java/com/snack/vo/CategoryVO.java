@@ -28,6 +28,11 @@ public class CategoryVO {
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
 
+    public CategoryVO() {}
+    public CategoryVO(Long id, String name, String icon, Integer sortOrder) {
+        this.id = id; this.name = name; this.icon = icon; this.sortOrder = sortOrder;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }

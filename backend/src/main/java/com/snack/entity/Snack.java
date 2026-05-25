@@ -38,6 +38,11 @@ public class Snack {
 
     private String notes;
 
+    /** v7.0 小卖铺扩展 */
+    private Integer isOnShelf;
+    private String description;
+    private java.time.LocalDateTime shelfTime;
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 

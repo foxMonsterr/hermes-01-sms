@@ -1,8 +1,11 @@
 package com.snack.controller;
 
+import com.snack.common.BusinessException;
 import com.snack.common.PageData;
 import com.snack.common.Result;
 import com.snack.dto.*;
+import com.snack.entity.Snack;
+import com.snack.mapper.SnackMapper;
 import com.snack.service.SnackService;
 import com.snack.vo.QuantityUpdateVO;
 import com.snack.vo.SnackPageVO;
@@ -13,6 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 /**
  * 零食管理接口（用户隔离）
  */
@@ -22,9 +27,11 @@ import org.springframework.web.bind.annotation.*;
 public class SnackController {
 
     private final SnackService snackService;
+    private final SnackMapper snackMapper;
 
-    public SnackController(SnackService snackService) {
+    public SnackController(SnackService snackService, SnackMapper snackMapper) {
         this.snackService = snackService;
+        this.snackMapper = snackMapper;
     }
 
     @Operation(summary = "分页列表", description = "支持关键字搜索、分类筛选、过期状态筛选")
@@ -91,6 +98,24 @@ public class SnackController {
         Long currentUserId = getCurrentUserId(request);
         snackService.batchDelete(currentUserId, dto.getIds());
         return Result.success();
+    }
+
+    @Operation(summary = "上架/下架", description = "v7.0: 切换零食在小卖铺的上架状态")
+    @PatchMapping("/{id}/shelf")
+    public Result<Void> toggleShelf(@PathVariable Long id, @RequestBody java.util.Map<String,Boolean> body,
+                                     HttpServletRequest request) {
+        Long currentUserId = getCurrentUserId(request);
+        Boolean onShelf = body.get("isOnShelf");
+        if (onShelf==null) throw BusinessException.badRequest("缺少 isOnShelf 参数");
+        Snack snack = snackMapper.selectById(id);
+        if (snack==null||!snack.getUserId().equals(currentUserId))
+            throw BusinessException.notFound("零食不存在");
+        if (snack.getPrice()==null && Boolean.TRUE.equals(onShelf))
+            throw BusinessException.badRequest("商品价格不能为空，设置价格后才能上架");
+        snack.setIsOnShelf(onShelf?1:0);
+        if (Boolean.TRUE.equals(onShelf)) snack.setShelfTime(LocalDateTime.now());
+        snackMapper.updateById(snack);
+        return Result.success(onShelf?"已上架":"已下架", null);
     }
 
     private Long getCurrentUserId(HttpServletRequest request) {

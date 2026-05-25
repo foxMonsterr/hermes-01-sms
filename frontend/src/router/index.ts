@@ -67,6 +67,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/OperationLogView.vue')
       },
       {
+        path: 'shop-orders',
+        name: 'ShopOrders',
+        meta: { requiresAuth: true },
+        component: () => import('@/views/ShopOrderListView.vue')
+      },
+      {
         path: 'settings',
         name: 'Settings',
         meta: { requiresAuth: true },

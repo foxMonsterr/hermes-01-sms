@@ -1,0 +1,9 @@
+/* 阳光橙主题 */
+[data-theme="orange"] {
+  --primary: #FFA500; --primary-light: #FFC147; --primary-dark: #E68A00;
+  --bg-page: #FFF8F0; --bg-sidebar: #3A2A1A;
+  --gradient-primary: linear-gradient(135deg, #FFA500, #FFC147);
+  --shadow-card: 0 4px 16px rgba(255,165,0,0.12);
+  --shadow-hover: 0 8px 28px rgba(255,165,0,0.20);
+  --glass-border: rgba(255,165,0,0.2);
+}

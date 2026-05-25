@@ -34,3 +34,7 @@ app:
   upload:
     base-path: ./uploads
     max-size: 2MB
+
+# v7.0 小卖铺配置
+shop:
+  owner-user-id: 1

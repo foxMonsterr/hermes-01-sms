@@ -8,8 +8,17 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import { setupGuards } from './router/guards'
-import './styles/variables.css'
-import './styles/global.css'
+import './styles/theme.css'
+import './styles/anime.css'
+import './styles/theme-mint.css'
+import './styles/theme-blue.css'
+import './styles/theme-orange.css'
+
+// 初始化主题
+const savedTheme = localStorage.getItem('theme')
+if (savedTheme && savedTheme !== 'pink') {
+  document.documentElement.setAttribute('data-theme', savedTheme)
+}
 
 const app = createApp(App)
 

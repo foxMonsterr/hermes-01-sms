@@ -44,6 +44,21 @@
         </el-card>
       </el-tab-pane>
 
+      <el-tab-pane label="🎨 主题" name="theme">
+        <el-card>
+          <p style="color:#909399;margin-bottom:16px">选择你喜欢的配色方案</p>
+          <div class="theme-grid">
+            <div v-for="t in themes" :key="t.name" class="theme-option" :class="{active:currentTheme===t.name}" @click="switchTheme(t.name)">
+              <div class="theme-preview" :style="{background:t.color}">
+                <div class="theme-dot" style="background:rgba(255,255,255,0.4);height:8px;border-radius:4px;margin-bottom:4px"></div>
+                <div class="theme-dot" style="background:rgba(255,255,255,0.25);height:4px;border-radius:2px;width:60%"></div>
+              </div>
+              <div class="theme-label">{{ t.icon }} {{ t.label }}</div>
+            </div>
+          </div>
+        </el-card>
+      </el-tab-pane>
+
       <el-tab-pane label="数据维护" name="maintenance">
         <el-card>
           <p style="color:#909399;margin-bottom:12px">下载数据库备份文件（仅本地开发/演示环境）</p>
@@ -65,6 +80,9 @@ import type { SystemConfig } from '@/types/systemConfig'
 
 const userStore = useUserStore()
 const activeTab = ref('profile')
+const currentTheme = ref(localStorage.getItem('theme')||'pink')
+const themes = [{name:'pink',label:'🌸 樱花粉',icon:'🌸',color:'linear-gradient(135deg,#FF7EB3,#FFB6D3)'},{name:'mint',label:'🍃 薄荷绿',icon:'🍃',color:'linear-gradient(135deg,#6BCB77,#88E088)'},{name:'blue',label:'🌊 天空蓝',icon:'🌊',color:'linear-gradient(135deg,#4D96FF,#7AB3FF)'},{name:'orange',label:'🍊 阳光橙',icon:'🍊',color:'linear-gradient(135deg,#FFA500,#FFC147)'}]
+function switchTheme(name:string){currentTheme.value=name;localStorage.setItem('theme',name);document.documentElement.setAttribute('data-theme',name==='pink'?'':name)}
 
 // profile
 const profileLoading = ref(false)
@@ -109,4 +127,10 @@ async function handleBackup() { try { await backupDatabase(); ElMessage.success(
 <style scoped>
 .settings-page { max-width: 640px; }
 .el-card { margin-bottom: 0; }
+.theme-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:12px; }
+.theme-option { text-align:center;cursor:pointer;border-radius:var(--radius-md);padding:8px;border:3px solid transparent;transition:all 0.2s ease; }
+.theme-option:hover { transform:scale(1.05); }
+.theme-option.active { border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-light); }
+.theme-preview { height:64px;border-radius:var(--radius-sm);padding:10px 8px;display:flex;flex-direction:column; }
+.theme-label { margin-top:8px;font-size:13px;font-weight:500;color:var(--text-primary); }
 </style>

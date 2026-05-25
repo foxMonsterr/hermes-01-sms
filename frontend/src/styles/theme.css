@@ -1,0 +1,262 @@
+/* ============================================================
+   零食小管家 — 二次元主题样式 (v6.0)
+   配色：樱花粉主色调 + 4 套换肤支持
+   策略：CSS 变量 + Element Plus :deep() 覆写
+   ============================================================ */
+
+/* ========== CSS 变量 ========== */
+:root {
+  /* 主色调 */
+  --primary:        #FF7EB3;
+  --primary-light:  #FFB6D3;
+  --primary-dark:   #E8659A;
+  --primary-darker: #C94A7A;
+
+  /* 辅助色 */
+  --success:       #6BCB77;
+  --success-light: #88E088;
+  --warning:       #FFD93D;
+  --warning-light: #FFE57F;
+  --danger:        #FF6B6B;
+  --danger-light:  #FF9E9E;
+  --info:          #4D96FF;
+  --info-light:    #7AB3FF;
+
+  /* 过期状态 */
+  --expire-normal:   #6BCB77;
+  --expire-warning:  #FFD93D;
+  --expire-danger:   #FFA500;
+  --expire-critical: #FF6B6B;
+  --expire-expired:  #9B59B6;
+
+  /* 背景 */
+  --bg-page:     #FFF5F7;
+  --bg-card:     #FFFFFF;
+  --bg-sidebar:  #2D1B3E;
+  --bg-modal:    rgba(0,0,0,0.4);
+
+  /* 文字 */
+  --text-primary:   #3D2C3A;
+  --text-secondary: #9B8EA0;
+  --text-light:     #C4B5C8;
+  --text-sidebar:   #E8D5F5;
+
+  /* 边框 */
+  --border-light:  #E8D5F5;
+  --border-normal: #D1C4D9;
+
+  /* 渐变 */
+  --gradient-primary: linear-gradient(135deg, #FF7EB3, #FFB6D3);
+  --gradient-success: linear-gradient(135deg, #6BCB77, #88E088);
+  --gradient-warning: linear-gradient(135deg, #FFD93D, #FFE57F);
+  --gradient-danger:  linear-gradient(135deg, #FF6B6B, #FF9E9E);
+  --gradient-info:    linear-gradient(135deg, #4D96FF, #7AB3FF);
+
+  /* 毛玻璃 */
+  --glass-bg:     rgba(255,255,255,0.85);
+  --glass-border: rgba(255,126,179,0.2);
+  --glass-blur:   blur(12px) saturate(180%);
+
+  /* 圆角 */
+  --radius-xs:     4px;
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     20px;
+  --radius-xl:     28px;
+  --radius-circle: 50%;
+
+  /* 间距 */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+
+  /* 阴影 */
+  --shadow-xs:    0 2px 4px rgba(0,0,0,0.06);
+  --shadow-sm:    0 4px 8px rgba(0,0,0,0.08);
+  --shadow-card:  0 4px 16px rgba(255,126,179,0.12);
+  --shadow-hover: 0 8px 28px rgba(255,126,179,0.20);
+  --shadow-xl:    0 16px 48px rgba(45,27,62,0.18);
+  --shadow-modal: 0 24px 64px rgba(0,0,0,0.25);
+
+  /* 过渡 */
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ========== 全局基础 ========== */
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ========== Element Plus 全局覆写 ========== */
+
+/* --- 按钮 --- */
+.el-button {
+  border-radius: var(--radius-md) !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+.el-button--primary {
+  background: var(--gradient-primary) !important;
+  border: none !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(255,126,179,0.3) !important;
+}
+.el-button--primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(255,126,179,0.4) !important;
+}
+.el-button--primary:active { transform: translateY(1px) !important; }
+.el-button--primary.is-disabled { opacity: 0.5; transform: none !important; }
+
+.el-button--success { background: var(--gradient-success) !important; border: none !important; color: #fff !important; }
+.el-button--warning { background: var(--gradient-warning) !important; border: none !important; color: #fff !important; }
+.el-button--danger  { background: var(--gradient-danger) !important;  border: none !important; color: #fff !important; }
+.el-button--info    { background: var(--gradient-info) !important;    border: none !important; color: #fff !important; }
+
+.el-button.is-plain { background: transparent !important; }
+.el-button--primary.is-plain { color: var(--primary) !important; border-color: var(--primary) !important; }
+.el-button--primary.is-plain:hover { background: var(--primary) !important; color: #fff !important; }
+
+.el-button--small  { border-radius: var(--radius-sm) !important; padding: 5px 14px !important; font-size: 12px !important; }
+
+/* --- 卡片 --- */
+.el-card {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: all 0.3s ease !important;
+}
+.el-card:hover {
+  box-shadow: var(--shadow-hover) !important;
+}
+.el-card__header {
+  border-bottom: 1px solid var(--border-light) !important;
+  font-weight: 600;
+}
+
+/* --- 输入框 --- */
+.el-input__wrapper {
+  border-radius: var(--radius-sm) !important;
+  transition: all 0.2s ease !important;
+}
+.el-input.is-focus .el-input__wrapper {
+  box-shadow: 0 0 0 2px rgba(255,126,179,0.2) !important;
+  border-color: var(--primary) !important;
+}
+.el-input__inner { color: var(--text-primary) !important; }
+
+/* --- 表格 --- */
+.el-table {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+}
+.el-table th.el-table__cell {
+  background: var(--gradient-primary) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+.el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: rgba(255,245,247,0.6) !important;
+}
+.el-table__body tr:hover td.el-table__cell {
+  background: rgba(255,126,179,0.08) !important;
+}
+
+/* --- 弹窗 --- */
+.el-dialog {
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden !important;
+}
+.el-overlay {
+  backdrop-filter: blur(4px) !important;
+  background: var(--bg-modal) !important;
+}
+.el-dialog__header {
+  background: var(--gradient-primary);
+  color: #fff;
+  margin: 0 !important;
+  padding: 16px 20px !important;
+}
+.el-dialog__title { color: #fff !important; font-weight: 600; }
+.el-dialog__headerbtn .el-dialog__close { color: #fff !important; }
+
+/* --- 标签 --- */
+.el-tag {
+  border-radius: var(--radius-sm) !important;
+  border: none !important;
+  font-weight: 500;
+}
+.el-tag--success { background: rgba(107,203,119,0.15) !important; color: var(--success) !important; }
+.el-tag--warning { background: rgba(255,217,61,0.15) !important; color: #C8960D !important; }
+.el-tag--danger  { background: rgba(255,107,107,0.15) !important; color: var(--danger) !important; }
+.el-tag--info    { background: rgba(155,142,160,0.15) !important; color: var(--text-secondary) !important; }
+
+/* --- 分页 --- */
+.el-pagination .is-active {
+  background: var(--gradient-primary) !important;
+  border-radius: var(--radius-circle) !important;
+}
+
+/* --- 菜单 (侧栏) --- */
+.el-menu {
+  border-right: none !important;
+}
+.el-menu-item {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0 !important;
+  margin: 2px 8px 2px 0 !important;
+  transition: all 0.2s ease !important;
+}
+.el-menu-item:hover {
+  background: rgba(255,126,179,0.12) !important;
+  transform: translateX(4px);
+}
+.el-menu-item.is-active {
+  background: linear-gradient(90deg, rgba(255,126,179,0.25), transparent) !important;
+  border-left: 4px solid var(--primary) !important;
+  color: #fff !important;
+}
+
+/* --- 下拉菜单 --- */
+.el-dropdown-menu {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-light) !important;
+}
+.el-dropdown-menu__item:hover {
+  background: rgba(255,126,179,0.08) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* --- 单选框 --- */
+.el-radio__input.is-checked .el-radio__inner {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.el-radio__input.is-checked + .el-radio__label { color: var(--primary) !important; }
+
+/* --- 开关 --- */
+.el-switch.is-checked .el-switch__core {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* --- 时间线 --- */
+.el-timeline-item__node { background: var(--primary) !important; }
+
+/* --- 消息提示 --- */
+.el-message {
+  border-radius: var(--radius-md) !important;
+  padding: 12px 20px !important;
+}
+
+print("theme.css done")

@@ -1,0 +1,125 @@
+/* ============================================================
+   零食小管家 — 动画库 (v6.0)
+   所有动画 keyframes + 实用 animation 类
+   ============================================================ */
+
+/* ========== 基础淡入淡出 ========== */
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+/* ========== 滑动 ========== */
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+@keyframes slideLeft {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes slideRight {
+  from { transform: translateX(-20px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* ========== 浮动 ========== */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-10px); }
+}
+@keyframes floatSm {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-5px); }
+}
+
+/* ========== 旋转 ========== */
+@keyframes spin  { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spinRev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+/* ========== 脉冲 ========== */
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.1); }
+}
+@keyframes pulseSm {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.05); }
+}
+
+/* ========== 抖动 ========== */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  10%,30%,50%,70%,90% { transform: translateX(-5px); }
+  20%,40%,60%,80%    { transform: translateX(5px); }
+}
+@keyframes wiggle {
+  0%,100% { transform: rotate(0deg); }
+  25%     { transform: rotate(-10deg); }
+  75%     { transform: rotate(10deg); }
+}
+
+/* ========== 缩放 ========== */
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+@keyframes scaleOut {
+  from { transform: scale(1);   opacity: 1; }
+  to   { transform: scale(0.8); opacity: 0; }
+}
+
+/* ========== 弹入 (用于 Toast / 通知) ========== */
+@keyframes slideInRight {
+  from { transform: translateX(400px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0);     opacity: 1; }
+  to   { transform: translateX(400px); opacity: 0; }
+}
+@keyframes slideInTop {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ========== 撒花粒子（占位，实际用 JS 实现） ========== */
+@keyframes confettiDrop {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(200px) rotate(720deg); opacity: 0; }
+}
+
+/* ========== 心跳 ========== */
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.3); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.3); }
+  70%  { transform: scale(1); }
+}
+
+/* ========== 实用动画类 ========== */
+.anim-fade-in      { animation: fadeIn 0.3s ease; }
+.anim-fade-out     { animation: fadeOut 0.3s ease forwards; }
+.anim-slide-up     { animation: slideUp 0.3s ease; }
+.anim-slide-down   { animation: slideDown 0.3s ease; }
+.anim-slide-in-r   { animation: slideInRight 0.3s ease; }
+.anim-slide-out-r  { animation: slideOutRight 0.5s ease forwards; }
+.anim-scale-in     { animation: scaleIn 0.3s ease; }
+.anim-float        { animation: float 3s ease-in-out infinite; }
+.anim-spin         { animation: spin 1s linear infinite; }
+.anim-pulse        { animation: pulse 2s ease-in-out infinite; }
+.anim-shake        { animation: shake 0.5s ease; }
+.anim-wiggle       { animation: wiggle 1s ease-in-out; }
+.anim-heartbeat    { animation: heartbeat 1.5s ease-in-out infinite; }
+
+/* ========== 页面过渡 ========== */
+.page-enter-active,
+.page-leave-active { transition: all 0.25s ease; }
+.page-enter-from   { opacity: 0; transform: translateY(12px); }
+.page-leave-to     { opacity: 0; transform: translateY(-12px); }
+
+/* ========== 过期紧急标签脉冲 ========== */
+.expire-critical-pulse { animation: pulse 2s ease-in-out infinite; }

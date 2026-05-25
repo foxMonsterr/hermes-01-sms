@@ -1,6 +1,7 @@
 package com.snack.config;
 
 import com.snack.security.JwtInterceptor;
+import com.snack.security.ShopJwtInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,9 +14,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final JwtInterceptor jwtInterceptor;
+    private final ShopJwtInterceptor shopJwtInterceptor;
 
-    public WebMvcConfig(JwtInterceptor jwtInterceptor) {
+    public WebMvcConfig(JwtInterceptor jwtInterceptor, ShopJwtInterceptor shopJwtInterceptor) {
         this.jwtInterceptor = jwtInterceptor;
+        this.shopJwtInterceptor = shopJwtInterceptor;
     }
 
     /**
@@ -51,7 +54,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/files/snacks/**",
                         "/api/files/avatars/**",
                         "/api/system/health",
-                        "/api/system/version"
+                        "/api/system/version",
+                        "/api/shop/**"
+                );
+
+        // v7.0 客户端 JWT 拦截器
+        registry.addInterceptor(shopJwtInterceptor)
+                .addPathPatterns(
+                        "/api/shop/auth/profile",
+                        "/api/shop/auth/password",
+                        "/api/shop/cart/**",
+                        "/api/shop/orders/**",
+                        "/api/shop/reviews/**"
+                )
+                .excludePathPatterns(
+                        "/api/shop/auth/login",
+                        "/api/shop/auth/register",
+                        "/api/shop/products/**",
+                        "/api/shop/categories",
+                        "/api/shop/announcements"
                 );
     }
 }

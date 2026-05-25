@@ -1,0 +1,9 @@
+/* 天空蓝主题 */
+[data-theme="blue"] {
+  --primary: #4D96FF; --primary-light: #7AB3FF; --primary-dark: #3A78D9;
+  --bg-page: #F0F9FF; --bg-sidebar: #1A2B4A;
+  --gradient-primary: linear-gradient(135deg, #4D96FF, #7AB3FF);
+  --shadow-card: 0 4px 16px rgba(77,150,255,0.12);
+  --shadow-hover: 0 8px 28px rgba(77,150,255,0.20);
+  --glass-border: rgba(77,150,255,0.2);
+}

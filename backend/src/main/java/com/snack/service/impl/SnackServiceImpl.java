@@ -134,6 +134,7 @@ public class SnackServiceImpl implements SnackService {
         snack.setPurchaseDate(dto.getPurchaseDate());
         snack.setExpiryDate(dto.getExpiryDate());
         snack.setNotes(dto.getNotes() != null ? dto.getNotes() : snack.getNotes());
+        snack.setImageUrl(dto.getImageUrl() != null ? dto.getImageUrl() : snack.getImageUrl());
 
         snackMapper.updateById(snack);
         return toVO(snack);

@@ -42,6 +42,10 @@ public class SnackUpdateDTO {
     @Schema(description = "备注", example = "黄瓜味")
     private String notes;
 
+    /** v5.0 零食图片URL */
+    @Schema(description = "图片URL", example = "/api/files/snacks/xxx.jpg")
+    private String imageUrl;
+
     // getters & setters
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -57,4 +61,6 @@ public class SnackUpdateDTO {
     public void setExpiryDate(LocalDate expiryDate) { this.expiryDate = expiryDate; }
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

@@ -1,0 +1,9 @@
+/* 薄荷绿主题 */
+[data-theme="mint"] {
+  --primary: #6BCB77; --primary-light: #88E088; --primary-dark: #55A85A;
+  --bg-page: #F0FFF4; --bg-sidebar: #1A3A2A;
+  --gradient-primary: linear-gradient(135deg, #6BCB77, #88E088);
+  --shadow-card: 0 4px 16px rgba(107,203,119,0.12);
+  --shadow-hover: 0 8px 28px rgba(107,203,119,0.20);
+  --glass-border: rgba(107,203,119,0.2);
+}
